@@ -34,7 +34,7 @@ def ecualizacion_local(imagen: np.ndarray, tamaño: int):
 
 
 '''Carga de la imagen y prueba con distintas ventanas'''
-imagen = cv2.imread("Imagen_con_detalles_escondidos.tif", cv2.IMREAD_GRAYSCALE)
+imagen = cv2.imread("../assets/Imagen_con_detalles_escondidos.tif", cv2.IMREAD_GRAYSCALE)
 if imagen is None:
     raise FileNotFoundError("No se pudo cargar la imagen.")
 
