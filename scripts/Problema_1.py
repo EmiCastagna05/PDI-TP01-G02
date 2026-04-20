@@ -6,32 +6,26 @@ import matplotlib.pyplot as plt
 #Ecualización local de histograma
 def ecualizacion_local(imagen: np.ndarray, tamaño: int):
     '''
-       Recibe dos cosas: la imagen y el tamaño de la ventana.
-       Esa ventana es un cuadrado que va a ir recorriendo
-       toda la imagen. 
+        Recibe dos cosas: la imagen y el tamaño de la ventana.
+        Esa ventana es un cuadrado que va a ir recorriendo
+        toda la imagen. 
     '''
     '''
-       Se agregan bordes artificiales copiando los valores del borde real 
-       así la ventana siempre puede existir completa.
+        Se agregan bordes artificiales copiando los valores del borde real 
+        así la ventana siempre puede existir completa.
     '''
     margen = tamaño // 2
-    imagen_extendida = cv2.copyMakeBorder(imagen, margen, margen, margen, margen,
-                                           cv2.BORDER_REPLICATE)
+    imagen_extendida = cv2.copyMakeBorder(imagen, margen, margen, margen, margen,cv2.BORDER_REPLICATE)
     filas, columnas = imagen.shape
 
     resultado = imagen.copy()
 
     for fila in range(filas):
         for columna in range(columnas):
-            ventana = imagen_extendida[fila: fila + tamaño,
-                                       columna: columna + tamaño]
+            ventana = imagen_extendida[fila: fila + tamaño, columna: columna + tamaño]
             ventana_ecualizada = cv2.equalizeHist(ventana)
             resultado[fila, columna] = ventana_ecualizada[margen, margen]
-    
     return resultado
-
-
-
 
 '''Carga de la imagen y prueba con distintas ventanas'''
 imagen = cv2.imread("../assets/Imagen_con_detalles_escondidos.tif", cv2.IMREAD_GRAYSCALE)
